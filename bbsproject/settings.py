@@ -142,3 +142,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ログイン後のリダイレクト先
 LOGIN_REDIRECT_URL = '/bbs/'
+
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
