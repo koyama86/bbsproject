@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% comment %} <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="ja">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBS Project-投稿詳細ページ</title>
+</head>
+<body>
+<h1>{{article.id}}の投稿詳細ページ</h1>
+    <div class="container">
+        <p>{{article.author}}:{{article.created_at}}</p>
+        <p>{{article.content}}</p>
+    </div>
+    <p><a href="{%url 'bbs:index' %}">一覧ページに戻る</a></p> {% endcomment %}
+
+
+{%block content%}
+<h1>{{ object.id }}の投稿詳細ページ</h1>
+<div class="card bg-light shadow-sm mt-3">
+    <div class="card-body">
+        <p>{{article.author}}:{{article.created_at}}</p>
+        <p>最終更新：{{object.updated_at}}</p>
+        <p>{{article.content}}</p>
+        <p><a href="{% url "bbs:update" object.pk %}">{% bootstrap_button button_type="submit" button_class="btn-success" content="編集" size="md" %}</a></p>
+        <p><a href="{% url "bbs:delete" object.pk %}">{% bootstrap_button button_type="submit" button_class="btn-danger" content="削除" size="md" %}</a></p>
+    </div>
+</div>
+<div class="mt-3">
+    <a href="{% url 'bbs:index' %}">{% bootstrap_button button_type="submit" button_class="btn-secondary" content="一覧ページへ戻る" size="md" %}</a>
+</div>
+{% endblock %}
+{% comment %}
+    </body>
+    </html>
+{% endcomment %}

@@ -1,0 +1,39 @@
+使ったコマンドをまとめるよ
+
+◆マイグレーションファイルの内容をデータベースに保存
+・models.pyかいたら
+$ python3 manage.py makemigrations bbs
+$ python3 manage.py migrate
+
+jyobi8655
+
+◆サーバー起動
+$ python3 -m venv venv(初回のみ)
+$ source venv/bin/activate
+$ python3 manage.py runserver
+
+◆bootstrapとの連携、インストール
+$ pip install bootstrap5
+
+◆githubのやつ
+$ pip install django-environ
+親ファイル直下に.envを作成(今回はbbsproject、manage.pyと同じ階層)
+.envファイルに記載
+.envファイルに書いててsettings.pyにあるやつを、settings.pyの方だけ削除(コメントアウト)
+
+bbsproject/settings.pyに以下を記載
+import os
+import environ
+
+# 環境変数を管理するためのenvオブジェクト作成
+env = environ.Env()
+# .envファイルからの読み込み
+env.read_env('.env')
+# .envファイルからSECRET_KEYを読み込み
+SECRET_KEY = env('SECRET_KEY')
+# .envファイルからDEBUGの値を取得し、真偽値に変換
+DEBUG = env.bool('DEBUG',default=False)
+
+djangoのバージョンとかいろいろを記載されてるtxtをまとめる、デプロイとかするときに最新バージョンだよって毎回実行してあげるといい
+$ pip freeze > requirements.txt
+裏技...（pip install -r requirements.txt を実行すると、txtファイルにかいてるやつを自動で一括ダウンロードインストールしてくれる）

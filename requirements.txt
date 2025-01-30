@@ -1,0 +1,5 @@
+asgiref==3.8.1
+Django==4.2
+django-bootstrap5==24.3
+django-environ==0.12.0
+sqlparse==0.5.2
